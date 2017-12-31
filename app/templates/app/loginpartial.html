@@ -1,0 +1,18 @@
+{% if user.is_authenticated %}
+<div class="navbar-collapse collapse">
+ <form id="logoutForm" action="/logout" method="post" class="navbar-right">
+    {% csrf_token %}
+    <ul class="nav navbar-nav navbar-right">
+        <li><span class="navbar-brand">Bienvenido {{ user.username }}! </span></li>
+        <li><a href="{% url 'logout' %}" >Log out</a></li>
+    </ul>
+
+</form>
+</div>
+{% else %}
+
+<ul class="nav navbar-nav navbar-right">
+    <li><a href="{% url 'home' %}">Log in</a></li>
+</ul>
+
+{% endif %}

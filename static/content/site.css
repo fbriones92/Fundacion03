@@ -1,0 +1,42 @@
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Establecer relleno para evitar que el contenido golpee los bordes */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Establecer el ancho en los elementos de entrada del formulario ya que son 100% de ancho por defecto */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+/* estilos para ayudantes de validación */
+.field-validation-error {
+    color: #b94a48;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+input.input-validation-error {
+    border: 1px solid #b94a48;
+}
+
+input[type="checkbox"].input-validation-error {
+    border: 0 none;
+}
+
+.validation-summary-errors {
+    color: #b94a48;
+}
+
+.validation-summary-valid {
+    display: none;
+}

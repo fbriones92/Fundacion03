@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> </title>
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/bootstrap.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+<style>
+#logo {
+
+      align: center;
+      width: 200px;
+    }
+
+
+body{
+    margin: 0;
+    padding: 0;
+    background-size: absolute;
+    font-family: sans-serif;
+    background-image: url( "{% static 'imagen/background.jpg' %}");
+}
+</style>
+
+</head>
+<body >
+<img src="{% static 'imagen/logo.png' %}"  id="logo"/>
+<div class="loginbox">
+<img src="{% static 'imagen/user.png' %}"  class="user"/>
+<div class="login">
+<h2></h2>
+
+   
+        
+            <form  id="logoForm" action="" method="post" >
+                {% csrf_token %}
+                <h4>Usar una Cuenta Local Para Ingresar.</h4>
+                <div >
+                    <label class="label">Usuario</label>
+                    <div>
+                        {{ form.username }}
+                    </div>
+                </div>
+                <div>
+                    <label class="label">Password</label>
+                    <div >
+                        {{ form.password }}
+                    </div>
+                </div>
+                <div ><br/>
+                    <div>
+                        <input type="submit" class="button" style="border-radius: 10px 10px; width:70px; height:40px; color: white; background-color: #0000;"  value="Log in"  />
+                        <input type="hidden" name="next" value="{{ next }}" />
+                    </div>
+                </div>
+                {% if form.errors %}
+                <p class="validation-summary-errors">Por favor ingrese un correcto usuario y password.</p>
+                {% endif %}
+            </form>
+     </div>
+ </div>
+   
+</body>
+</html>

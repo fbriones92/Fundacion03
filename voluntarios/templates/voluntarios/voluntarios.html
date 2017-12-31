@@ -1,0 +1,101 @@
+{% extends 'voluntarios/voluntario_master.html'%}
+{% load staticfiles %}
+{% block tittle %}<span class="mdl-layout-title">Voluntarios</span>
+    <!-- <div class="mdl-layout-spacer"></div> -->
+    <div class="mdl-layout-spacer"></div>
+          <div >
+      		 
+      		<form class="navbar" action="">
+		<label>Busqueda: </label><input class="text" placeholder="Busqueda voluntarios.." name="query" value="{{query}}" /> 
+		<input type="submit" value="Consultar" class="btn btn-sm btn-info" />
+	</form>   
+          </div>{% endblock %}
+{% block contenido %}
+			<div class="mdl-grid ">
+          <div class=" mdl-grid mdl-shadow--2dp mdl-color--white  mdl-cell--12-col mdl-cell--8-col-tablet">
+           <!-- <div class="demo-content"> -->
+	<table class="table ">
+		<thead class="">
+				<th class="th">ID</th>
+				<th class="th">NOMBRES</th>
+				<th class="th">APELLIDOS</th>
+				<th class="th">MOVIL</th>
+				<th class="th">E-MAIL</th>
+				<th class="th">REFERENCIA</th>
+				<th class="th">CARRERA</th> 
+				<th class="th">ESTADO</th>
+				<th class="th" >ACCIONES</th>
+        </thead>
+         <tbody class="" >
+			{% for voluntario in voluntarios %}
+			<tr>
+				<td><b>{{ voluntario.id }}</b></td>
+				<td><b>{{ voluntario.nombres }}</b></td>
+				<td><b>{{ voluntario.apellidos }}</b></td>
+				<td><b>{{ voluntario.celular }}</b></td>
+				<td><b>{{ voluntario.correo }}</b></td>
+				<td><b>{% for referencia in voluntario.referencia.all %}
+							{{ referencia.parentesco }}--{{ referencia.nombres }}
+			{% endfor %}				
+				</b></td>
+				<td><b>{{ voluntario.carrera }}</b></td>
+				<td><b>{{ voluntario.get_estado_display }}</b></td>
+				<td><a class="btn btn-sm btn-warning" href="{% url 'voluntario' voluntario.id %}"><span class="glyphicon glyphicon-edit">Editar</span></a>
+				<a class="btn btn-sm btn-danger" href="{% url 'update' voluntario.id %}"><span class="glyphicon glyphicon-trash">Deshab</span></a></td>
+			</tr>
+		 </tbody>
+		 {% endfor %}
+		</table>
+		{% if voluntarios.has_previous %}
+		<a href="?page={{voluntarios.previous_page_number}}&query={{ query }}">Anterior</a>
+		{% endif %}
+		
+		Pagina {{ voluntarios.number }} de {{ voluntarios.paginator.num_pages }}
+		
+		{% if voluntarios.has_next %} 
+		<a href="?page={{voluntarios.next_page_number}}&query={{ query }}">Siguiente</a>
+		{% endif %}
+         </div>
+         </div>
+          <!-- </div> -->
+
+		<div class="  mdl-cell--4-col mdl-cell--4-col-tablet ">
+          
+            <div class="mdl-shadow--4dp mdl-cell--4-col mdl-cell--6-col-tablet mdl-cell--8-col-desktop">
+              <div class="mdl-card__title  mdl-color--grey-200">
+                
+                <div class="mdl-card__actions mdl-card--border">
+                
+                <!-- <a href="" class="btn btn-info btn-block">Nuevo Ingreso</a>
+                <a href="" class="btn btn-info btn-block  ">Excel archivo</a> -->
+                
+                <div class="col-lg-8">
+                
+                <a id="crear_detalle" href="{% url 'voluntario'  %}" class="btn btn-info btn-block">Nuevo
+                           <span class="glyphicon glyphicon-plus"></span>
+                </a>      
+                <a id="crear_detalle" href="{% url 'reporte_excel' %}" class="btn btn-info btn-block">Excel
+                           <span class="glyphicon glyphicon-list-alt"></span>
+                </a>
+                <a href="" class="btn btn-info btn-block">PDF
+                           <span class="glyphicon glyphicon-file"></span>
+            	</a>                          
+                                 
+                                                
+                </div>  
+                
+                
+              </div>         
+              </div>
+              <!--  <div class="mdl-card__supporting-text mdl-color-text--grey-600">
+                Non dolore elit adipisicing ea reprehenderit consectetur culpa.
+              </div>-->
+              
+            </div>
+        
+      </div>
+            
+		
+		
+		     
+{% endblock %}

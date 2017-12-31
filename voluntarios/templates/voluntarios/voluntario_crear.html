@@ -1,0 +1,19 @@
+{% extends "voluntarios/voluntario_master.html" %}
+{% load staticfiles %}
+{% load bootstrap %}
+{% block tittle %} <span class="mdl-layout-title">Nuevo Ingreso</span> {% endblock  %}
+{% block contenido %}
+<div class="mdl-grid demo-content">
+<div class="demo-charts  mdl-color--white mdl-shadow--2dp  mdl-cell--8-col mdl-cell--8-col-tablet  ">
+<form class="navbar" action="" method="post" name="formacedula" enctype="multipart/form-data">
+
+		{% csrf_token %}
+		{{ form|bootstrap_horizontal:'col-lg-4' }}
+		
+		<input type="submit" name="enviar" onmouseover="validarcedula(cedula)"  value="Grabar Persona" class="button " />&nbsp;&nbsp;&nbsp;	
+		
+		</form>
+</div>
+</div>
+
+{% endblock %}
